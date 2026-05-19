@@ -108,7 +108,7 @@ export default function Home() {
             Descubra peças femininas modernas, sofisticadas e minimalistas.
           </p>
 
-          <button className="mt-10 px-10 py-4 bg-[#C7A542] text-white uppercase tracking-[0.2em] text-sm hover:opacity-90 transition duration-300">
+          <button className="mt-10 px-10 py-4 bg-[#f7cec0] text-white uppercase tracking-[0.2em] text-sm hover:opacity-90 transition duration-300">
 
             Comprar Agora
 
