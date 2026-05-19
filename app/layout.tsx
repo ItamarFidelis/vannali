@@ -19,8 +19,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vanni Li",
+  title: "Vanna Li",
   description: "Loja feminina elegante",
+  icons: {
+    icon: "/vl-logo.png",
+  },
 };
 
 export default function RootLayout({
