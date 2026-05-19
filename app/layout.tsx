@@ -22,7 +22,9 @@ export const metadata: Metadata = {
   title: "Vanna Li",
   description: "Loja feminina elegante",
   icons: {
-    icon: "/vl-logo.png",
+    icon: [
+      { url: "/vl-logo.png?v=2", type: "image/png" }
+    ],
   },
 };
 
