@@ -1,6 +1,8 @@
+
 import Image from "next/image";
 
 export default function Home() {
+  
   return (
     <main className="bg-[#E7C5BA] text-[#3A2F2A] scroll-smooth">
 
@@ -121,20 +123,26 @@ export default function Home() {
       {/* SOBRE */}
       <section
         id="sobre"
-        className="py-28 px-6 md:px-10 bg-[#F5ECE7]"
-      >
+        className="relative py-100 px-6 md:px-10 overflow-hidden">
 
-        <div className="max-w-5xl mx-auto text-center">
+        {/* FUNDO PARALLAX */}
+        <div className="absolute inset-0 bg-[url('/espelho.jpeg')] bg-cover bg-center bg-fixed"/>
 
-          <p className="uppercase tracking-[0.3em] text-sm text-[#8a6f2d] mb-4">
+        {/* OVERLAY (para melhorar leitura) */}
+        <div className="absolute inset-0 bg-black/20 z-10" />
+       
+        {/* CONTEÚDO */}
+        <div className="relative z-20 max-w-5xl mx-auto text-center text-white">
+
+          <p className="uppercase tracking-[0.35em] text-sm mb-4 opacity-80">
             Sobre
           </p>
 
-          <h3 className="font-serif text-4xl md:text-5xl font-light mb-8 text-[#3A2F2A]">
+          <h3 className="font-serif text-4xl md:text-5xl font-light mb-8">
             Moda feminina com identidade elegante
           </h3>
 
-          <p className="text-lg text-[#5c463d] leading-9">
+          <p className="text-lg leading-9 text-white/85 max-w-3xl mx-auto">
             A Vanna Li nasceu com o propósito de trazer sofisticação,
             minimalismo e autenticidade para mulheres modernas.
             Cada coleção é pensada para unir conforto, elegância
