@@ -10,14 +10,14 @@ export default function Home() {
 
   const { scrollY } = useScroll();
 
-  //MENU MOBILE
-  const [menuOpen, setMenuOpen] = useState(false);
-
   // PARALLAX REAL (movimento do fundo)
   const y = useTransform(scrollY, [0, 1200], [0, -300]);
 
   // BLUR DINÂMICO (efeito premium)
   const blur = useTransform(scrollY, [0, 1200], ["0px", "3px"]);
+
+    //MENU MOBILE
+  const [menuOpen, setMenuOpen] = useState(false);
 
   //HEADER TRANSPARENTE
   const  [scrolled, setScrolled] = useState(false);
@@ -32,7 +32,19 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
 
   }, []);
+  useEffect(() => {
 
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+
+  }, [menuOpen]);
   return (
     <main className="bg-[#E7C5BA] text-[#3A2F2A] scroll-smooth">
 
