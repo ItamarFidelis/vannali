@@ -1,5 +1,6 @@
 "use client";
 
+
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -60,21 +61,36 @@ export default function Home() {
             </div>
 
             <div>
-              <h1 className="font-serif text-4xl font-light tracking-[0.25em] text-[#C7A542] uppercase leading-none">
+              <h1 className={`font-serif text-4xl font-light tracking-[0.25em] uppercase leading-none transition-colors duration-500 ${
+                    scrolled
+                    ? "text-[#C7A542]"
+                    : "text-white"
+                  }`}
+              >
                 Vanna Li
               </h1>
-              <p className="text-xs tracking-[0.45em] text-[#8a6f2d] uppercase mt-1 pl-3">
+              
+              <p className={`text-xs tracking-[0.45em] uppercase mt-1 pl-3 transition-colors duration-500 ${
+                   scrolled
+                     ? "text-[#8a6f2d]"
+                     : "text-white/80"
+                  }`}
+              >
                 Estilo que Inspira
               </p>
             </div>
           </a>
 
           {/* MENU */}
-          <nav className="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-white">
-            <a href="#inicio" className="hover:text-[#C7A542] transition">Início</a>
-            <a href="#sobre" className="hover:text-[#C7A542] transition">Sobre</a>
-            <a href="#loja" className="hover:text-[#C7A542] transition">Loja</a>
-            <a href="#contato" className="hover:text-[#C7A542] transition">Contato</a>
+          <nav className={`hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${
+                 scrolled
+                 ? "text-[#3A2F2A]"
+                 : "text-white"
+               }`}>
+            <a href="#inicio" className="hover:text-[#C7A542] transition duration-300">Início</a>
+            <a href="#sobre" className="hover:text-[#C7A542] transition duration-300">Sobre</a>
+            <a href="#loja" className="hover:text-[#C7A542] transition duration-300">Loja</a>
+            <a href="#contato" className="hover:text-[#C7A542] transition duration-300">Contato</a>
           </nav>
 
         </div>
@@ -166,6 +182,7 @@ export default function Home() {
 
       {/* LOJA */}
       <section id="loja" className="py-24 px-6 md:px-10 bg-[#E7C5BA]">
+        
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-16">
@@ -181,33 +198,51 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
             {[1, 2, 3].map((item) => (
-              <div key={item} className="group overflow-hidden">
 
-                <div className="relative h-[500px] rounded-sm overflow-hidden">
+              <motion.div
+                key={item}
+                whileHover={{ y: -12 }}
+                transition={{ duration: 0.4 }}
+                className="group relative overflow-hidden"
+              >
 
+                {/* CARD */}
+                <div className="relative h-[500px] rounded-[24px] overflow-hidden bg-white/10 backdrop-blur-sm">
+
+                  {/* IMAGEM */}
                   <Image
                     src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1974&auto=format&fit=crop"
                     alt="Produto"
                     fill
-                    className="object-cover group-hover:scale-105 transition duration-700"
+                    className="object-cover scale-100 group-hover:scale-110 transition duration-700 ease-out"
                   />
+
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-80" />
+
+                  {/* GLOW PREMIUM */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-700 bg-white/10" />
 
                 </div>
 
-                <div className="pt-5">
-                  <h4 className="text-2xl font-serif">
+                {/* TEXTO */}
+                <div className="pt-6">
+
+                  <h4 className="text-2xl font-serif text-[#3A2F2A]">
                     Produto Premium
                   </h4>
 
-                  <p className="text-[#8a6f2d] mt-2">
+                  <p className="text-[#8a6f2d] mt-2 text-lg">
                     R$ 249,90
                   </p>
+
                 </div>
 
-              </div>
+              </motion.div>
+
             ))}
 
-          </div>
+            </div>
 
         </div>
       </section>
