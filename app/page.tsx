@@ -4,10 +4,14 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Home() { 
 
   const { scrollY } = useScroll();
+
+  //MENU MOBILE
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // PARALLAX REAL (movimento do fundo)
   const y = useTransform(scrollY, [0, 1200], [0, -300]);
@@ -33,24 +37,28 @@ export default function Home() {
     <main className="bg-[#E7C5BA] text-[#3A2F2A] scroll-smooth">
 
       {/* HEADER */}
-      <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-                scrolled
-                   ? `
-                     bg-white/10
-                     backdrop-blur-2xl
-                     border-b border-white/20
-                     shadow-[0_8px_32px_rgba(0,0,0,0.12)]
-                   `
-                   : `
-                      bg-transparent
-                    `
-              }`}>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          scrolled
+            ? `
+              bg-white/10
+              backdrop-blur-2xl
+              border-b border-white/20
+              shadow-[0_8px_32px_rgba(0,0,0,0.12)]
+            `
+            : `
+              bg-transparent
+            `
+        }`}
+      >
+
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-5">
 
           {/* LOGO */}
           <a href="#inicio" className="flex items-center gap-4">
-            
+
             <div className="relative w-14 h-14">
+
               <Image
                 src="/vl-logo.png"
                 alt="Vanna Li"
@@ -58,42 +66,139 @@ export default function Home() {
                 priority
                 className="object-contain"
               />
+
             </div>
 
             <div>
-              <h1 className={`font-serif text-4xl font-light tracking-[0.25em] uppercase leading-none transition-colors duration-500 ${
-                    scrolled
+
+              {/* NOME */}
+              <h1
+                className={`font-serif text-4xl font-light tracking-[0.25em] uppercase leading-none transition-colors duration-500 ${
+                  scrolled
                     ? "text-[#C7A542]"
                     : "text-white"
-                  }`}
+                }`}
               >
                 Vanna Li
               </h1>
-              
-              <p className={`text-xs tracking-[0.45em] uppercase mt-1 pl-3 transition-colors duration-500 ${
-                   scrolled
-                     ? "text-[#8a6f2d]"
-                     : "text-white/80"
-                  }`}
+
+              {/* SUBTÍTULO */}
+              <p
+                className={`text-xs tracking-[0.45em] uppercase mt-1 pl-3 transition-colors duration-500 ${
+                  scrolled
+                    ? "text-[#8a6f2d]"
+                    : "text-white/80"
+                }`}
               >
                 Estilo que Inspira
               </p>
+
             </div>
+
           </a>
 
-          {/* MENU */}
-          <nav className={`hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${
-                 scrolled
-                 ? "text-[#3A2F2A]"
-                 : "text-white"
-               }`}>
-            <a href="#inicio" className="hover:text-[#C7A542] transition duration-300">Início</a>
-            <a href="#sobre" className="hover:text-[#C7A542] transition duration-300">Sobre</a>
-            <a href="#loja" className="hover:text-[#C7A542] transition duration-300">Loja</a>
-            <a href="#contato" className="hover:text-[#C7A542] transition duration-300">Contato</a>
+          {/* MENU DESKTOP */}
+          <nav
+            className={`hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium transition-colors duration-500 ${
+              scrolled
+                ? "text-[#3A2F2A]"
+                : "text-white"
+            }`}
+          >
+
+            <a
+              href="#inicio"
+              className="hover:text-[#C7A542] transition duration-300"
+            >
+              Início
+            </a>
+
+            <a
+              href="#sobre"
+              className="hover:text-[#C7A542] transition duration-300"
+            >
+              Sobre
+            </a>
+
+            <a
+              href="#loja"
+              className="hover:text-[#C7A542] transition duration-300"
+            >
+              Loja
+            </a>
+
+            <a
+              href="#contato"
+              className="hover:text-[#C7A542] transition duration-300"
+            >
+              Contato
+            </a>
+
           </nav>
 
+          {/* BOTÃO MOBILE */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className={`md:hidden z-50 transition-colors duration-500 ${
+              scrolled
+                ? "text-[#3A2F2A]"
+                : "text-white"
+            }`}
+          >
+
+            {menuOpen ? <X size={32} /> : <Menu size={32} />}
+
+          </button>
+
         </div>
+
+        {/* MENU MOBILE */}
+        <div
+          className={`md:hidden fixed top-0 left-0 w-full h-screen backdrop-blur-2xl bg-black/40 transition-all duration-500 z-40 ${
+            menuOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+        >
+
+          <div className="flex flex-col items-center justify-center h-full gap-10 text-white text-2xl uppercase tracking-[0.25em]">
+
+            <a
+              href="#inicio"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-[#C7A542] transition"
+            >
+              Início
+            </a>
+
+            <a
+              href="#sobre"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-[#C7A542] transition"
+            >
+              Sobre
+            </a>
+
+            <a
+              href="#loja"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-[#C7A542] transition"
+            >
+              Loja
+            </a>
+
+            <a
+              href="#contato"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-[#C7A542] transition"
+            >
+              Contato
+            </a>
+
+          </div>
+
+        </div>
+
       </header>
 
       {/* HERO */}
